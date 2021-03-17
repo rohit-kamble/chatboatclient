@@ -5,26 +5,37 @@ import { Link } from "react-router-dom";
 
 class Login extends Component {
     state={
-        admin:[],
+        admin: [],
         user:[],
         email: '',
         password:'',
         loging: false,
     }
     componentDidMount (){
-      this.login();
+      fetch('http://localhost:5001/admin')
+      .then(res=> res.json())
+      .then(res=>{
+        this.setState({user: this.state.user, admin: res})
+      })
+
       fetch('http://localhost:5001/user')
       .then(res=>res.json())
       .then(res=>this.setState({user: res, admin: this.state.admin}))
     }
 
-    async login() {
-      const log = await fetch('http://localhost:5001/admin');
-      const ans = await log.json();
-      console.log("ans**", ans);
-      this.setState({user: this.state.user, admin: ans})
-
+    componentDidUpdate(prevProps, prvState) {
+      const adminData = prevProps.location.state && prevProps.location.state.admin;
+      const userData = prevProps.location.state && prevProps.location.state.user;
+      const testing = userData ? userData : this.state.user;
+      const testing2 = adminData ? adminData : this.state.admin;
+      if(this.state.admin.length != testing2.length) {
+        this.setState({admin: adminData})
+      }
+      if(this.state.user.length != testing.length) {
+        this.setState({user: userData})
+      }
     }
+
     submitUserform = (e)=>{
       e.preventDefault();
      const test = this.state.user.length > 0 && this.state.user.find((item,i)=>{
@@ -54,6 +65,7 @@ class Login extends Component {
     }
 
     render() {
+
         return(
             <Container>
       <Row>

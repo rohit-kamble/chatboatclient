@@ -3,11 +3,18 @@ import { withRouter } from "react-router-dom";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 class UserRegister extends Component {
   state = {
+    user: [],
     name:'',
     email:'',
     password:'',
 
   };
+
+  componentDidMount() {
+    fetch('http://localhost:5001/user')
+    .then(res=> res.json())
+    .then(res=> this.setState({user: res}))
+  }
 
   api = ()=>{
     fetch("http://localhost:5001/user", {
@@ -22,13 +29,21 @@ class UserRegister extends Component {
       }
     })
     .then(response => response.json())
-    .then(json => console.log(json));
+    .then(res =>{
+      const newData = this.state.user;
+      newData.push(res)
+      this.setState({user: newData});
+    })
+
   }
 
   submit=(e)=>{
     e.preventDefault();
     this.api();
-    this.props.history.push('/login');
+    this.props.history.push({
+      pathname: '/login',
+      state: {user: this.state.user}
+    })
   }
 
   render() {

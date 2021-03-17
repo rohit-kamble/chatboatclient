@@ -6,12 +6,17 @@ class AdminRegster extends Component{
     name:'',
     email:'',
     password:'',
-
+    admin: [],
   };
 
+    componentDidMount() {
+      fetch('http://localhost:5001/admin')
+      .then(res=> res.json())
+      .then(res=> this.setState({admin: res}))
+    }
 
   api = ()=>{
-    fetch("http://localhost:5001/admin", {
+    fetch("http://localhost:5001/admin/post", {
       method: "POST",
       body: JSON.stringify({
         name: this.state.name,
@@ -23,16 +28,27 @@ class AdminRegster extends Component{
       }
     })
     .then(response => response.json())
-    .then(json => console.log(json));
+    .then(res => {
+      const newData = this.state.admin;
+      newData.push(res)
+      this.setState({admin: newData})
+    }
+    );
   }
+
 
   submit=(e)=>{
     e.preventDefault();
     this.api();
-    this.props.history.push('/login');
+    // this.props.history.push('/login');
+    this.props.history.push({
+      pathname: '/login',
+      state: {admin: this.state.admin}
+    })
   }
 
   render(){
+    console.log("this.state**", this.state);
     return(
       <Container>
       <Row>

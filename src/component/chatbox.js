@@ -7,6 +7,7 @@ export default class Chatbox extends Component {
     state = {
       value: '',
       data: [],
+      test: [],
       show: false,
       incr: 0,
       testing: false
@@ -24,7 +25,14 @@ export default class Chatbox extends Component {
     async showData() {
       const data = await fetch('http://localhost:5001/chatdetail')
       const test = await data.json();
-      console.log("test", test);
+      const uu = this.state.test;
+      test.map(((item)=>{
+       const {data} = item;
+       data.map((item)=>{
+        uu.push(JSON.parse(item));
+       })
+      }));
+      this.setState({test: uu})
     }
 
     handleChange =(event)=> {
@@ -50,12 +58,26 @@ export default class Chatbox extends Component {
 
     render() {
       const login = this.props.login;
+      console.log("data**", this.state);
       return (
         <>
 
         <div className="test">
           <div className="chatbox" style={{position: 'relative'}}>
-            {!login ? <Link style={{position: 'absolute', top: '50%', left:'50%', transform: 'translate(-50%,-50%)', textAlign: 'center'}} className="quetion" to="/login">Log In</Link>: this.state.data.map((item,index)=> <Quetion qes={item.value} key={index} show={this.state.show} index={item.incr}/>)}
+            {/* {!login ? <Link style={{position: 'absolute', top: '50%', left:'50%', transform: 'translate(-50%,-50%)', textAlign: 'center'}} className="quetion" to="/login">Log In</Link>: this.state.data.map((item,index)=> <Quetion qes={item.value} key={index} show={this.state.show} index={item.incr}/>)} */}
+            {!login ?
+              <Link
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left:'50%',
+                  transform: 'translate(-50%,-50%)',
+                  textAlign: 'center'}}
+                className="quetion"
+                to="/login"
+              >Log In
+              </Link>:
+              this.state.data.map((item,index)=> <Suggestion qes={item.value} data={this.state.test} key={index} show={this.state.show} index={item.incr}/>)}
           </div>
           <div className="chatbox-container">
             <form onSubmit={(e)=>{this.handleSubmit(e)}} action="#">

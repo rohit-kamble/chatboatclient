@@ -6,15 +6,20 @@ import image2 from "./images/chat2.jpeg";
 import image3 from "./images/chat3.jpeg";
 export default class Home extends Component {
   state ={
-    login: false
+    login: false,
+    showChatboat: false,
   }
 
+
+  openChat =()=> {
+    this.setState({showChatboat : !this.state.showChatboat})
+  }
 
   render() {
 
     let data = localStorage.getItem('login');
     let test = data !== null && JSON.parse(data);
-    console.log("test***",test);
+    console.log("this.state***", this.state);
     return(
       <div>
     <div className='container-fluid'>
@@ -92,7 +97,7 @@ export default class Home extends Component {
           </Card.Footer>
         </Card>
       </CardDeck>
-      <Chatbox login={test}/>
+      <Chatbox login={test} chat={this.openChat} showChatboat={this.state.showChatboat}/>
     </div>
   </div>
   )

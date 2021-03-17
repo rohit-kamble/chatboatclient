@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Quetion  from "./quetion";
 import Suggestion from "./suggestion";
 import { Link } from "react-router-dom";
+import raj from '../component/images/chatboat.jpg';
+import closebutton from './images/closebutton.jpg';
 export default class Chatbox extends Component {
     state = {
       value: '',
@@ -55,15 +57,24 @@ export default class Chatbox extends Component {
       event.preventDefault();
     }
 
+    testing =()=>{
+      this.props.chat();
+    }
 
     render() {
       const login = this.props.login;
       console.log("data**", this.state);
       return (
         <>
-
+          {!this.props.showChatboat ?
+            <div  className="test1"><img src={raj} alt="test" onClick={this.testing}/></div>
+            :
         <div className="test">
-          <div className="chatbox" style={{position: 'relative'}}>
+
+            <>
+            <div className="closed-button" onClick={this.testing}><img src={closebutton} alt="closed button"/></div>
+            <div className="chatbox" style={{position: 'relative'}}>
+
             {/* {!login ? <Link style={{position: 'absolute', top: '50%', left:'50%', transform: 'translate(-50%,-50%)', textAlign: 'center'}} className="quetion" to="/login">Log In</Link>: this.state.data.map((item,index)=> <Quetion qes={item.value} key={index} show={this.state.show} index={item.incr}/>)} */}
             {!login ?
               <Link
@@ -73,7 +84,7 @@ export default class Chatbox extends Component {
                   left:'50%',
                   transform: 'translate(-50%,-50%)',
                   textAlign: 'center'}}
-                className="quetion"
+                className="login-button"
                 to="/login"
               >Log In
               </Link>:
@@ -84,7 +95,10 @@ export default class Chatbox extends Component {
               <input type="text" placeholder="type here..." value={this.state.value} onChange={(e)=>{this.handleChange(e)}} />
             </form>
           </div>
+          </>
+
         </div>
+        }
        </>
       );
     }

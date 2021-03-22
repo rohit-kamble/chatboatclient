@@ -3,9 +3,12 @@ import React from 'react'
 export default function Suggestion(props) {
  const {qes, data} = props;
   const test=()=>{
-    let ff= []
+    let ff= [];
+    console.log("qes*", qes);
+
     ff= data && data.filter((item)=>{
-      if((item.quetion).indexOf(qes) != -1){
+      console.log("item.quetion**", item.quetion);
+      if((item.quetion).indexOf(qes) !== -1){
         return item.answer;
       }
     })

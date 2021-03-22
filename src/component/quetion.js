@@ -24,7 +24,9 @@ export default class Quetion extends Component {
     .then(res=> {
       const newAns = res.filter(item=> {
         const {name} = item;
-        if(this.props.qes.includes(name)) {
+        console.log("item**", item)
+        console.log("this.props**", this.props);
+        if(this.props.qes.indexOf(name) !== -1) {
           return item.name
         }
       })
@@ -46,7 +48,9 @@ export default class Quetion extends Component {
   result=()=>{
     const newAns=this.state.data.length > 0 &&  this.state.data.filter(item => {
       const {name} = item;
-      if(this.props.qes.includes(name)) {
+      console.log("item**", name)
+      console.log("this.props.qes**", this.props.qes);
+      if(this.props.qes.indexOf(name) !== -1) {
         return item.name
       }
     })

@@ -112,7 +112,7 @@ input[type="text" i] {
 .answer {
   max-width: 350px;
   min-width: 150px;
-  padding: 10px;
+  padding: 10px 30px;
   background: #ffe259;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #ffa751, #ffe259);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #ffa751, #ffe259); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -129,6 +129,26 @@ input[type="text" i] {
   border: 1px solid red;
   background-color: rosybrown;
   border-radius: 50px;
+}
+.contact {
+  position: relative;
+}
+
+.filter-text-container {
+  background-color: turquoise;
+}
+
+.filter-text-container span {
+cursor: pointer;
+}
+
+
+.contact img {
+  position: absolute;
+  right: 3px;
+  bottom: -25px;
+  height: 20px;
+  width: 20px;
 }
 
 .quetiona {

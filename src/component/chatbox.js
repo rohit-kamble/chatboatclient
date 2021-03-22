@@ -5,6 +5,7 @@ import Suggestion from "./suggestion";
 import { Link } from "react-router-dom";
 import raj from '../component/images/chatboat.jpg';
 import closebutton from './images/closebutton.jpg';
+import Contact from './contact';
 export default class Chatbox extends Component {
     state = {
       value: '',
@@ -12,6 +13,7 @@ export default class Chatbox extends Component {
       test: [],
       show: false,
       incr: 0,
+      filters: [],
       testing: false
     };
 
@@ -22,6 +24,7 @@ export default class Chatbox extends Component {
       }
       console.log("localstroge***", JSON.parse(data));
       this.showData();
+      this.dad();
     }
 
     async showData() {
@@ -38,6 +41,7 @@ export default class Chatbox extends Component {
     }
 
     handleChange =(event)=> {
+      this.filterData();
       this.setState({
         value: event.target.value,
         data: this.state.data,
@@ -45,14 +49,15 @@ export default class Chatbox extends Component {
       });
     }
 
-    handleSubmit=(event)=> {
+    handleSubmit=(event, text)=> {
       let newData = this.state.data;
-      newData.push({value: this.state.value, incr: this.state.incr + this.state.data.length  });
+      newData.push({value: text || this.state.value, incr: this.state.incr + this.state.data.length  });
 
       this.setState({
         value: '',
         data: newData,
         show: false,
+        filters: [],
       })
       event.preventDefault();
     }
@@ -61,16 +66,29 @@ export default class Chatbox extends Component {
       this.props.chat();
     }
 
+    dad = (text, test)=>{
+      const data =text && text.toLowerCase();
+      console.log("test pseech***", test);
+      this.filterData();
+      this.setState({value: data});
+    }
+
+    filterData=()=>{
+      let newdata = this.state.filters;
+      newdata = this.state.test.filter((item)=>item.quetion.includes(this.state.value));
+      console.log("newdata**", newdata);
+      this.setState({filters : newdata })
+    }
+
     render() {
       const login = this.props.login;
-      console.log("data**", this.state);
+
       return (
         <>
           {!this.props.showChatboat ?
             <div  className="test1"><img src={raj} alt="test" onClick={this.testing}/></div>
             :
         <div className="test">
-
             <>
             <div className="closed-button" onClick={this.testing}><img src={closebutton} alt="closed button"/></div>
             <div className="chatbox" style={{position: 'relative'}}>
@@ -92,11 +110,20 @@ export default class Chatbox extends Component {
           </div>
           <div className="chatbox-container">
             <form onSubmit={(e)=>{this.handleSubmit(e)}} action="#">
+              {this.state.filters.map((item,i)=>{
+                return (
+                  <div className="filter-text-container">
+                     <span onClick={(e)=> this.handleSubmit(e, item.quetion)}>{item.quetion}</span>
+                  </div>
+
+                )
+              })}
+              <Contact showSpeech={this.dad}/>
               <input type="text" placeholder="type here..." value={this.state.value} onChange={(e)=>{this.handleChange(e)}} />
+
             </form>
           </div>
           </>
-
         </div>
         }
        </>

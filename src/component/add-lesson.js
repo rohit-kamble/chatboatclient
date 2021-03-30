@@ -50,29 +50,30 @@ export default class AddLesson extends Component {
 
   render() {
     return (
-    <Container className="back2">
-      <Row>
-        <Col md={6}>
-            <h1>Add new Lesson</h1>
-            <Form onSubmit={this.addLesson}>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Control
-                  style={{textAlign: 'left'}}
-                  type="text"
-                  placeholder="enter lesson"
-                  value={this.state.value}
-                  onChange={(e)=>{this.setState({value: e.target.value})}}
-                />
-                <Form.Text className="text-muted">
-                  Check lesson spelling.
-                </Form.Text>
-              </Form.Group>
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </Form>
-        </Col>
-        <Col md={6}>
+      <div className="back2">
+        <Container>
+          <Row>
+            <Col md={6}>
+                <h1>Add new Lesson</h1>
+                <Form onSubmit={this.addLesson}>
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Control
+                      style={{textAlign: 'left'}}
+                      type="text"
+                      placeholder="enter lesson"
+                      value={this.state.value}
+                      onChange={(e)=>{this.setState({value: e.target.value})}}
+                    />
+                    <Form.Text className="text-muted">
+                      Check lesson spelling.
+                    </Form.Text>
+                  </Form.Group>
+                  <Button variant="primary" type="submit">
+                    Submit
+                  </Button>
+                </Form>
+            </Col>
+            <Col md={6}>
           <h2>click for Add Quetion & Answer</h2>
           <ol className="pl-4">
             {this.state.data.map((name,i)=>{
@@ -82,8 +83,9 @@ export default class AddLesson extends Component {
             })}
           </ol>
         </Col>
-      </Row>
-    </Container>
-    )
+          </Row>
+        </Container>
+      </div>
+     )
   }
 }

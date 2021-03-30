@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Table  } from "react-bootstrap";
+import deleteImg from "./images/delete.svg";
+import editImg from "./images/edit.png"
 
 class QuetionAndAnswer extends Component {
   state= {
@@ -83,6 +85,7 @@ class QuetionAndAnswer extends Component {
 
   render() {
     return (
+      <div className="data">
         <Container>
           <Row>
             <Col md={{span:6,offset:3}}>
@@ -133,9 +136,9 @@ class QuetionAndAnswer extends Component {
                         <td>{i + 1}</td>
                         <td>{quetion}</td>
                         <td>{answer}</td>
-                        <td>
-                          <div><button onClick={()=>{this.delete(quetion)}}>Delete</button></div>
-                          <div><button onClick={()=>{this.edit(quetion, answer)}}>Edit</button></div>
+                        <td style={{textAlign: 'center'}}>
+                          <button onClick={()=>{this.delete(quetion)}}><img className="edit-delete-img" src={deleteImg} alt="delete"/></button>
+                          <button onClick={()=>{this.edit(quetion, answer)}}><img className="edit-delete-img" src={editImg} alt="edit"/></button>
                         </td>
                       </tr>
                     )
@@ -144,8 +147,9 @@ class QuetionAndAnswer extends Component {
               </Table>
             </Col>
           </Row>
-      </Container>
-    )
+        </Container>
+      </div>
+         )
   }
 }
 

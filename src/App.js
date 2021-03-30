@@ -8,6 +8,7 @@ import UserRegister from './component/ur';
 import AdminRegister from './component/ar';
 import AddLesson from './component/add-lesson';
 import quetionandanswer from './component/quetionandanswer';
+import Test from './component/test';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/adminregister" component={AdminRegister}/>
         <Route path="/addlesson" component={AddLesson}/>
         <Route path="/quetionandanswer" component={quetionandanswer}/>
+        <Route path="/test" component={Test}/>
       </Switch>
     </Router>
   );

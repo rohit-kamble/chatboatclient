@@ -20,7 +20,6 @@ export default class AddLesson extends Component {
 
     newData.push(item.name);
    });
-   console.log("new", newData);
    this.setState({data: newData})
   }
 
@@ -50,9 +49,8 @@ export default class AddLesson extends Component {
   }
 
   render() {
-    console.log("this.state**", this.state)
     return (
-    <Container>
+    <Container className="back2">
       <Row>
         <Col md={6}>
             <h1>Add new Lesson</h1>

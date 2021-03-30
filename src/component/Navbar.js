@@ -7,13 +7,10 @@ import { Nav, Navbar } from "react-bootstrap";
 export const Header1 = () => {
   return (
     <nav>
-      <Navbar bg='dark' variant='dark'>
+      <Navbar bg='transparent' variant='dark'>
         <Navbar.Brand href='/'>ChatBot</Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='mr-auto'>
-            <Link to='/'>Home</Link>
-          </Nav>
           <Nav className='ml-auto'> <Link to='/contact'>
           Contact Us
         </Link></Nav>

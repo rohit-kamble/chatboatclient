@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-//import { Button, Input, Form } from 'reactstrap';
-import Quetion  from "./quetion";
 import Suggestion from "./suggestion";
 import { Link } from "react-router-dom";
-import raj from '../component/images/chatboat.jpg';
+import icon from './images/icon.png';
 import closebutton from './images/closebutton.jpg';
-import Contact from './contact';
+import SpeechToText from './speech-to-text';
 export default class Chatbox extends Component {
     state = {
       value: '',
@@ -22,7 +20,6 @@ export default class Chatbox extends Component {
       if(JSON.parse(data)){
         this.setState({testing: true})
       }
-      console.log("localstroge***", JSON.parse(data));
       this.showData();
       this.dad();
     }
@@ -68,7 +65,6 @@ export default class Chatbox extends Component {
 
     dad = (text, test)=>{
       const data =text && text.toLowerCase();
-      console.log("test pseech***", test);
       this.filterData();
       this.setState({value: data});
     }
@@ -76,7 +72,6 @@ export default class Chatbox extends Component {
     filterData=()=>{
       let newdata = this.state.filters;
       newdata = this.state.test.filter((item)=>item.quetion.includes(this.state.value));
-      console.log("newdata**", newdata);
       this.setState({filters : newdata })
     }
 
@@ -86,7 +81,7 @@ export default class Chatbox extends Component {
       return (
         <>
           {!this.props.showChatboat ?
-            <div  className="test1"><img src={raj} alt="test" onClick={this.testing}/></div>
+            <div  className="test1"><img src={icon} alt="test" onClick={this.testing}/></div>
             :
         <div className="test">
             <>
@@ -118,9 +113,8 @@ export default class Chatbox extends Component {
 
                 )
               })}
-              <Contact showSpeech={this.dad}/>
+              <SpeechToText showSpeech={this.dad}/>
               <input type="text" placeholder="type here..." value={this.state.value} onChange={(e)=>{this.handleChange(e)}} />
-
             </form>
           </div>
           </>

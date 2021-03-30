@@ -19,13 +19,11 @@ class QuetionAndAnswer extends Component {
     const s_d = await fetch('http://localhost:5001/chatdetail')
     const mo = await s_d.json();
     const test = mo.filter((item,i)=> item.name === this.props.location.state.name);
-     console.log("showData***", test[0].data);
      this.setState({data: test[0].data})
   }
 
   addQuetionAndAnswer = (event)=> {
     event.preventDefault();
-    console.log("edit**", this.state)
     this.state.edit ? this.editpush(): this.pushNewData();
     this.setState({edit: false})
   }
@@ -67,7 +65,6 @@ class QuetionAndAnswer extends Component {
   }
 
   async editpush() {
-    console.log("this.pushdata,", this.state);
     const edit_data = await fetch(`http://localhost:5001/chatpost/data/edit/${this.state.editdata}`, {
       method: 'PUT',
       headers : {
@@ -131,7 +128,6 @@ class QuetionAndAnswer extends Component {
                 <tbody>
                   {this.state.data.map((item,i)=>{
                     const {quetion, answer} = item !== null && JSON.parse(item);
-                    console.log("quetion**", quetion);
                     return (
                       <tr>
                         <td>{i + 1}</td>

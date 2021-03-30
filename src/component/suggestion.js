@@ -4,10 +4,8 @@ export default function Suggestion(props) {
  const {qes, data} = props;
   const test=()=>{
     let ff= [];
-    console.log("qes*", qes);
 
     ff= data && data.filter((item)=>{
-      console.log("item.quetion**", item.quetion);
       if((item.quetion).indexOf(qes) !== -1){
         return item.answer;
       }
@@ -26,11 +24,10 @@ export default function Suggestion(props) {
         const {answer} = item;
         return(
           <div className="suggetiona">
-            <div className="answer"><b>{answer}</b></div>
+            <div className="answer"><b> rohit kamble</b></div>
           </div>
         )}) : <div>Loading.....</div>
       }
-
     </div>
   )
 }

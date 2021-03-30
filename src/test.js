@@ -17,7 +17,6 @@ export default class Test extends Component {
   handleSubmit=(event)=> {
     let newData = this.state.data;
     newData.push(this.state.value);
-    console.log("newDta**", newData)
     this.setState({
       value: '',
       data: newData
@@ -26,7 +25,6 @@ export default class Test extends Component {
   }
 
   render() {
-    console.log("this.staare", this.state)
     return (
       <div className="chatbox">
         {this.state.data.map((item,index)=> <Quetion qes={item}/>)}

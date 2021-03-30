@@ -48,9 +48,9 @@ class AdminRegster extends Component{
   }
 
   render(){
-    console.log("this.state**", this.state);
     return(
-      <Container>
+      <div className="back2">
+        <Container >
       <Row>
         <Col md={{span:6,offset:3}}>
             <h1>Admin Register</h1>
@@ -94,7 +94,9 @@ class AdminRegster extends Component{
         </Row>
 
     </Container>
-  )
+
+      </div>
+      )
 
 }
 

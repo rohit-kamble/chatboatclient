@@ -14,7 +14,7 @@ export default function SpeechToText(props) {
 
   return(
       <div className="speeh-to-text">
-    <img onClick={()=>{SpeechRecognition.startListening(); props.showSpeech(transcript, false)}} src={mice} alt="mice"/>
-  </div>
+        <img onClick={()=>{SpeechRecognition.startListening(); props.showSpeech(transcript, false)}} src={mice} alt="mice"/>
+      </div>
   )
 }

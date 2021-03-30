@@ -24,7 +24,7 @@ export default function Suggestion(props) {
         const {answer} = item;
         return(
           <div className="suggetiona">
-            <div className="answer"><b> rohit kamble</b></div>
+            <div className="answer"><b>{answer}</b></div>
           </div>
         )}) : <div>Loading.....</div>
       }
